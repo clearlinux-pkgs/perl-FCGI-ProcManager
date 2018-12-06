@@ -83,8 +83,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1FCGI/ProcManager.pm
-/usr/lib/perl5/vendor_perl/5.28.1FCGI/ProcManager/Constrained.pm
+/usr/lib/perl5/vendor_perl/5.28.1/FCGI/ProcManager.pm
+/usr/lib/perl5/vendor_perl/5.28.1/FCGI/ProcManager/Constrained.pm
 
 %files dev
 %defattr(-,root,root,-)
