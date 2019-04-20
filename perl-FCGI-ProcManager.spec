@@ -4,11 +4,11 @@
 #
 Name     : perl-FCGI-ProcManager
 Version  : 0.28
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfcgi-procmanager-perl/libfcgi-procmanager-perl_0.28-1.debian.tar.xz
-Summary  : 'A perl-based FastCGI process manager'
+Summary  : Functions for managing FastCGI applications
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: perl-FCGI-ProcManager-license = %{version}-%{release}
@@ -26,6 +26,7 @@ process management characteristics.
 Summary: dev components for the perl-FCGI-ProcManager package.
 Group: Development
 Provides: perl-FCGI-ProcManager-devel = %{version}-%{release}
+Requires: perl-FCGI-ProcManager = %{version}-%{release}
 
 %description dev
 dev components for the perl-FCGI-ProcManager package.
@@ -44,7 +45,7 @@ license components for the perl-FCGI-ProcManager package.
 cd ..
 %setup -q -T -D -n FCGI-ProcManager-0.28 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/FCGI-ProcManager-0.28/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/FCGI-ProcManager-0.28/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
