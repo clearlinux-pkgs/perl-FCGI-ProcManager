@@ -4,14 +4,15 @@
 #
 Name     : perl-FCGI-ProcManager
 Version  : 0.28
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfcgi-procmanager-perl/libfcgi-procmanager-perl_0.28-1.debian.tar.xz
-Summary  : Functions for managing FastCGI applications
+Summary  : 'A perl-based FastCGI process manager'
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: perl-FCGI-ProcManager-license = %{version}-%{release}
+Requires: perl-FCGI-ProcManager-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -40,18 +41,28 @@ Group: Default
 license components for the perl-FCGI-ProcManager package.
 
 
+%package perl
+Summary: perl components for the perl-FCGI-ProcManager package.
+Group: Default
+Requires: perl-FCGI-ProcManager = %{version}-%{release}
+
+%description perl
+perl components for the perl-FCGI-ProcManager package.
+
+
 %prep
 %setup -q -n FCGI-ProcManager-0.28
-cd ..
-%setup -q -T -D -n FCGI-ProcManager-0.28 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libfcgi-procmanager-perl_0.28-1.debian.tar.xz
+cd %{_builddir}/FCGI-ProcManager-0.28
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/FCGI-ProcManager-0.28/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/FCGI-ProcManager-0.28/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -61,7 +72,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -70,8 +81,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager
-cp COPYING %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/COPYING
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/deblicense_copyright
+cp %{_builddir}/FCGI-ProcManager-0.28/COPYING %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/70bc76011ca22ca19dc2f311422fd2abd1639284
+cp %{_builddir}/FCGI-ProcManager-0.28/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/d3c0a81c50f2d3bff1ffb0fd24ed40ba471fb676
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -84,8 +95,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/FCGI/ProcManager.pm
-/usr/lib/perl5/vendor_perl/5.28.2/FCGI/ProcManager/Constrained.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -94,5 +103,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-FCGI-ProcManager/COPYING
-/usr/share/package-licenses/perl-FCGI-ProcManager/deblicense_copyright
+/usr/share/package-licenses/perl-FCGI-ProcManager/70bc76011ca22ca19dc2f311422fd2abd1639284
+/usr/share/package-licenses/perl-FCGI-ProcManager/d3c0a81c50f2d3bff1ffb0fd24ed40ba471fb676
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/FCGI/ProcManager.pm
+/usr/lib/perl5/vendor_perl/5.30.1/FCGI/ProcManager/Constrained.pm
