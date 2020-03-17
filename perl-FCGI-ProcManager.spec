@@ -4,7 +4,7 @@
 #
 Name     : perl-FCGI-ProcManager
 Version  : 0.28
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfcgi-procmanager-perl/libfcgi-procmanager-perl_0.28-1.debian.tar.xz
@@ -82,7 +82,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager
 cp %{_builddir}/FCGI-ProcManager-0.28/COPYING %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/70bc76011ca22ca19dc2f311422fd2abd1639284
-cp %{_builddir}/FCGI-ProcManager-0.28/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/d3c0a81c50f2d3bff1ffb0fd24ed40ba471fb676
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-FCGI-ProcManager/d3c0a81c50f2d3bff1ffb0fd24ed40ba471fb676
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -108,5 +108,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/FCGI/ProcManager.pm
-/usr/lib/perl5/vendor_perl/5.30.1/FCGI/ProcManager/Constrained.pm
+/usr/lib/perl5/vendor_perl/5.30.2/FCGI/ProcManager.pm
+/usr/lib/perl5/vendor_perl/5.30.2/FCGI/ProcManager/Constrained.pm
