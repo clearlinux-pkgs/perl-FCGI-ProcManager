@@ -4,7 +4,7 @@
 #
 Name     : perl-FCGI-ProcManager
 Version  : 0.28
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/FCGI-ProcManager-0.28.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfcgi-procmanager-perl/libfcgi-procmanager-perl_0.28-1.debian.tar.xz
@@ -108,5 +108,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/FCGI/ProcManager.pm
-/usr/lib/perl5/vendor_perl/5.34.0/FCGI/ProcManager/Constrained.pm
+/usr/lib/perl5/*
